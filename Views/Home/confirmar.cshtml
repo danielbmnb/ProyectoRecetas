@@ -1,0 +1,42 @@
+﻿<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<link href="~/fontawesome-free-5.15.1-web/css/fontawesome.css" rel="stylesheet" />
+<link href="~/fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet" />
+<style>
+
+    #correo {
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+        font-size: 25px;
+        margin-top: 10px;
+        margin-bottom: 100px;
+        text-align: center;
+        text-shadow: 0 0 0.2em #8F7;
+    }
+    .contenedor {
+        margin: 150px;
+    }
+    button{
+        margin:10px;
+        padding:5px;
+        border-radius: 50px;
+        display: none;
+        color:black;
+        background-size: cover;
+    }
+    button:hover{
+        color:brown;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+</style>
+<form action="/Registrarse/Registro/enviarEMail" method="post">
+    <div class="contenedor">
+
+        <div class="container mt-4">
+            <p id="correo">
+                Se ha enviado un correo electronico, por favor revisa tu correo para recuperar tu contraseña.
+            </p>
+            <button type="submit" class="btn btn-success btn btn-block"><i class="fas fa-arrow-left" style="margin-right:6px; color:black;"></i> REGRESAR </button>
+        </div>
+    </div>
+</form>

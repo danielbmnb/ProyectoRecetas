@@ -1,0 +1,128 @@
+﻿@model List<Ingredientes>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis Recetas</title>
+    <meta charset="utf-8" />
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="~/lib/alertas/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+    <script src="~/lib/alertas/sweetalert2.js"></script>
+    <script src="~/js/Validaciones.js"></script>
+    <link rel="apple-touch-icon" sizes="76x76" href="~/plantillaAdmin/assets/img/apple-icon.png" />
+    <link rel="icon" type="image/svg" href="~/plantillaAdmin/assets/img/favicon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+    <link href="~/plantillaAdmin/assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link href="~/plantillaAdmin/assets/demo/demo.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+
+        <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                    Mis Recetas
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item active  ">
+                        <a class="nav-link" asp-area="Registrarse" asp-controller="Registro" asp-action="Admin">
+                            <i class="material-icons">dashboard</i>
+                            <p>Inicio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-area="Ingrediente" asp-controller="Ingrediente" asp-action="ListarIngrediente">
+                            <i class="material-icons">fastfood</i>
+                            <p>Listar Ingrediente</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-area="Ingrediente" asp-controller="Ingrediente" asp-action="Agregar">
+                            <i class="material-icons">fastfood</i>
+                            <p>Agregar Ingrediente</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-area="Registrarse" asp-controller="Registro" asp-action="ListarUsuarios">
+                            <i class="material-icons">person</i>
+                            <p>Listar Usuario</p>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="container m-lg-5">
+
+            <h5>LISTADO DE LAS RECETAS</h5>
+
+            <table id="usuarios" class="display" style="width:100%">
+                <thead>
+                    <tr>
+
+                        <th><i class="fas fa-key" style="margin-right:3px"></i>IDINGREDIENTE</th>
+                        <th><i class="fab fa-odnoklassniki" style="margin-right:3px"></i>INGREDIENTE</th>
+                        <th><i class="fas fa-comment-medical" style="margin-right:3px"></i>DESCRIPCIÓN</th>
+                        <th><i class="far fa-image" style="margin-right:3px"></i>IMAGEN</th>
+                        <th><i class="fas fa-satellite" style="margin-right:3px"></i>ESTADO</th>
+                        <th><i class="fas fa-sync-alt" style="margin-right:3px"></i>ACCIONES</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    @foreach (Ingredientes registro in Model)
+                    {
+                        <tr>
+
+                            <td>@registro.idingrediente</td>
+                            <td>@registro.tipo</td>
+                            <td>@registro.descripcion</td>
+                            <td><img width="150" src="/Imagenes/@registro.imagen" alt="No se cargó la imagen" /></td>
+                            <td>@registro.Estado</td>
+
+                            <td>
+                                <a class="btn btn-warning" href="/Ingrediente/Ingrediente/ModificarIngrediente/@registro.idingrediente" type="button"><i class="fas fa-pencil-alt" style="margin-right:5px"></i>Modificar</a>
+                                <a class="btn btn-success" href="/Ingrediente/Ingrediente/EstadoIngrediente/@registro.idingrediente"><i class="fas fa-satellite" style="margin-right:5px"></i>@Html.Raw(registro.Estado ? "Inactivo" : "Activo")</a>
+                            </td>
+
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#usuarios').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+
+                }
+
+            });
+        });
+    </script>
+
+</body>
+</html>
